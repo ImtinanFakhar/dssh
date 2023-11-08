@@ -11,7 +11,7 @@ function Navigation() {
       <nav className="bg-black p-4 flex items-center justify-between">
         <div className="flex items-center">
           <img
-            src="public/logo.png"
+            src="/logo.png"
             alt="HRoom Logo"
             className="w-8 h-8 mr-2"
           />
