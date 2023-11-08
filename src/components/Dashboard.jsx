@@ -15,7 +15,7 @@ function Dashboard() {
   const [endDate, setEndDate] = useState(new Date());
 
   useEffect(() => {
-    const apiUrl = 'http://127.0.0.1:8000/dashboard/';
+    const apiUrl = 'https://hyperoomco.pythonanywhere.com/dashboard/';
     const startISO = startDate.toISOString();
     const endISO = endDate.toISOString();
 
