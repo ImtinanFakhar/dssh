@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bordered-date-picker {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .glass-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent white background */
+    backdrop-filter: blur(10px); /* Apply a blur effect */
+    z-index: -1; /* Behind the content */
+  }
+  .pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }

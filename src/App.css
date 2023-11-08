@@ -1,0 +1,48 @@
+.glass-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent white background */
+    backdrop-filter: blur(10px); /* Apply a blur effect */
+    z-index: -1; /* Behind the content */
+  }
+  .pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 4px;
+    padding: 10px;
+    background-color: #f8f9fa; /* Light gray */
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    
+  }
+  
+  .page-link {
+    padding: 5px 10px;
+    border: 1px solid #dee2e6; /* Light gray */
+    color: black; /* Dark gray */
+    text-decoration: none;
+  }
+  
+  .page-link:hover {
+    background-color: #e9ecef; /* Lighter gray */
+  }
+  
+  .prev-link, .next-link {
+    padding: 5px 10px;
+    border: 1px solid #dee2e6; /* Light gray */
+    color: #495057; /* Dark gray */
+    text-decoration: none;
+  }
+  
+  .prev-link:hover, .next-link:hover {
+    background-color: #e9ecef; /* Lighter gray */
+  }
+  
+  .active {
+    background-color: #ff0000; /* Blue */
+    color: #ffffff; /* White */
+  }
