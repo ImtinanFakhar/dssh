@@ -9,7 +9,7 @@ function Products() {
 
   useEffect(() => {
     // Fetch product data from the API endpoint when the component mounts
-    axios.get('http://127.0.0.1:8000/all-products/')
+    axios.get('https://hyperoomco.pythonanywhere.com/all-products/')
       .then((response) => {
         // Parse the response data as JSON, if needed
         const jsonData = JSON.parse(response.data);
