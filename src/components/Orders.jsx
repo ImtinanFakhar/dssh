@@ -16,7 +16,7 @@ function App() {
     setLoading(true);
 
     axios
-      .get("https://hyperoomco.pythonanywhere.com/orders/", {
+      .get("http://127.0.0.1:8000/orders/", {
         params: {
           start_date: startDate,
           end_date: endDate,
@@ -48,50 +48,58 @@ function App() {
   };
 
   return (
-    <div className="p-4">
-      <div className="mb-4">
-        <label className="text-lg font-semibold text-gray-600 mr-2">
-          Start Date:
-        </label>
-        <DatePicker
-          selected={startDate}
-          onChange={(date) => setStartDate(date)}
-          className="border rounded px-3 py-2 text-gray-800"
-        />
-      </div>
-      <div className="mb-4">
-        <label className="text-lg font-semibold text-gray-600 mr-2">
-          End Date:
-        </label>
-        <DatePicker
-          selected={endDate}
-          onChange={(date) => setEndDate(date)}
-          className="border rounded px-3 py-2 text-gray-800"
-        />
-      </div>
-      <button
-        className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
-        onClick={fetchOrders}
-      >
-        Fetch Data
-      </button>
-      {loading ? (
-        <p className="text-lg font-semibold mt-8">Loading data...</p>
-      ) : data ? (
-        <div>
-          <div className="flex justify-center align-middle">
-            <div className="mb-4 p-4 bg-white shadow-md rounded">
-              <h2 className="text-3xl font-bold text-gray-800">
+    <div className="min-h-screen bg-gray-100 py-8">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col md:flex-row md:items-end mb-6">
+          <div className="md:w-1/3 mb-4 md:mb-0 md:pr-4">
+            <label className="block text-lg font-semibold text-gray-700 mb-2">
+              Start Date:
+            </label>
+            <DatePicker
+              selected={startDate}
+              onChange={(date) => setStartDate(date)}
+              className="border rounded px-3 py-2 w-full text-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-150 ease-in-out"
+            />
+          </div>
+          <div className="md:w-1/3 mb-4 md:mb-0 md:px-2">
+            <label className="block text-lg font-semibold text-gray-700 mb-2">
+              End Date:
+            </label>
+            <DatePicker
+              selected={endDate}
+              onChange={(date) => setEndDate(date)}
+              className="border rounded px-3 py-2 w-full text-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-150 ease-in-out"
+            />
+          </div>
+          <div className="md:w-1/3 md:pl-4 flex justify-center md:justify-end">
+            <button
+              className="bg-blue-500 text-white py-2 px-6 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50 shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1"
+              onClick={fetchOrders}
+            >
+              Fetch Data
+            </button>
+          </div>
+        </div>
+  
+        {loading ? (
+          <div className="text-center">
+            <p className="text-xl font-semibold text-gray-600">Loading data...</p>
+          </div>
+        ) : data ? (
+          <div>
+            {/* Order Summary Section */}
+            <div className="bg-white shadow rounded-lg p-6 mb-8">
+              <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center md:text-left">
                 Order Summary
               </h2>
-              <div className="flex justify-between mt-4">
-                <div className="p-4 border rounded bg-gray-100">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-blue-50 p-4 rounded-lg border border-blue-200 hover:shadow-md transition-shadow duration-200 ease-in-out">
                   <p className="text-3xl font-bold text-blue-500">
                     ${data.total_amount_sum.toFixed(2)}
                   </p>
-                  <p className="text-gray-600">Total Amount Sum</p>
+                  <p className="text-gray-600">Total Amount Sum After Commission</p>
                 </div>
-                <div className="p-4 border rounded bg-gray-100">
+                <div className="bg-blue-50 p-4 rounded-lg border border-blue-200 hover:shadow-md transition-shadow duration-200 ease-in-out">
                   <p className="text-3xl font-bold text-blue-500">
                     {data.num_orders}
                   </p>
@@ -99,58 +107,59 @@ function App() {
                 </div>
               </div>
             </div>
-          </div>
-          <div className="mt-8">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">
-              Ordered Products
-            </h2>
-            {data.orders.map((order, index) => (
-              <div key={index} className="py-4 border-b border-gray-200">
-                <div className="flex items-center justify-between">
-                  <div className="text-xl font-semibold text-gray-800">
-                    Order #{index + 1}
-                  </div>
-                  <div className="text-gray-600">
-                    Date: {order.created_at.split("T")[0]}
-                  </div>
-                </div>
-                <div className="text-xl font-semibold text-blue-500 mt-2">
-                  Total Price: ${parseFloat(order.total_price).toFixed(2)}
-                </div>
-                <div className="mt-4">
-                  <button
-                    className="bg-blue-500 text-white py-2 px-4 rounded hover-bg-blue-600"
-                    onClick={() => toggleProductDetails(index)}
-                  >
-                    {showProductDetails[index]
-                      ? "Hide Details"
-                      : "View Details"}
-                  </button>
-                </div>
-                {/* Display ordered products only if showProductDetails is true for this order */}
-                {showProductDetails[index] && (
-                  <div className="mt-4">
-                    <h3 className="text-2xl font-bold text-gray-800 mb-2">
-                      Ordered Products
+  
+            {/* Ordered Products Section */}
+            <div>
+              <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                Ordered Products
+              </h2>
+              {data.orders.map((order, index) => (
+                <div key={index} className="bg-white shadow-md rounded-lg p-4 mb-6">
+                  <div className="flex justify-between items-center border-b pb-4 mb-4">
+                    <h3 className="text-xl font-semibold text-gray-800">
+                      Order #{index + 1}
                     </h3>
-                    <ul className="list-disc pl-8 text-lg">
-                      {order.line_items.map((item, i) => (
-                        <li key={i} className="text-gray-800">
-                          {item.title}
-                        </li>
-                      ))}
-                    </ul>
+                    <p className="text-sm font-semibold text-gray-600">
+                      Date: {order.created_at.split("T")[0]}
+                    </p>
                   </div>
-                )}
-              </div>
-            ))}
+                  <div className="text-xl font-semibold text-blue-500 mb-4">
+                    Total Price: ${parseFloat(order.total_price).toFixed(2)}
+                  </div>
+                  <div>
+                    <button
+                      className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300 transition duration-300 ease-in-out"
+                      onClick={() => toggleProductDetails(index)}
+                    >
+                      {showProductDetails[index] ? "Hide Details" : "View Details"}
+                    </button>
+                  </div>
+                  {showProductDetails[index] && (
+                    <div className="mt-4">
+                      <h4 className="text-lg font-bold text-gray-800 mb-2">
+                        Products
+                      </h4>
+                      <ul className="list-disc pl-5 text-gray-800">
+                        {order.line_items.map((item, i) => (
+                          <li key={i} className="mb-1">
+                            {item.title}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      ) : (
-        <p className="text-lg font-semibold mt-8 text-gray-800">
-          No data available.
-        </p>
-      )}
+        ) : (
+          <div className="text-center">
+            <p className="text-xl font-semibold text-gray-800">
+              No data available.
+            </p>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
