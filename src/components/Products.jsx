@@ -5,7 +5,7 @@ import ReactPaginate from 'react-paginate';
 function Products() {
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
-  const productsPerPage = 20; // Number of products to display per page
+  const productsPerPage = 30; // Number of products to display per page
 
   useEffect(() => {
     // Fetch product data from the API endpoint when the component mounts
