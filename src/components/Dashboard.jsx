@@ -91,7 +91,7 @@ function Dashboard() {
               </h3>
               <p className="text-3xl font-bold text-blue-600">
                 <FontAwesomeIcon icon={faDollarSign} />{" "}
-                {data.total_after_commission}
+                {formatCurrency(data.total_after_commission)}
               </p>
             </div>
           </div>
