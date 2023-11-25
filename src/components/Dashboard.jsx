@@ -2,6 +2,11 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faDollarSign,
+  faShoppingCart,
+} from "@fortawesome/free-solid-svg-icons";
 
 function Dashboard() {
   const [data, setData] = useState({
@@ -16,7 +21,7 @@ function Dashboard() {
   const [endDate, setEndDate] = useState(new Date());
 
   useEffect(() => {
-    const apiUrl = "https://hyperoomco.pythonanywhere.com/dashboard/";
+    const apiUrl = "http://127.0.0.1:8000/dashboard/";
     const startISO = startDate.toISOString();
     const endISO = endDate.toISOString();
 
@@ -85,7 +90,8 @@ function Dashboard() {
                 Total Sales
               </h3>
               <p className="text-3xl font-bold text-blue-600">
-                {formatCurrency(data.total_after_commission)}
+                <FontAwesomeIcon icon={faDollarSign} />{" "}
+                {data.total_after_commission}
               </p>
             </div>
           </div>
@@ -97,7 +103,7 @@ function Dashboard() {
                 Total Sales After Commission
               </h3>
               <p className="text-3xl font-bold text-blue-600">
-                {formatCurrency(data.total_amount_sum)}
+                <FontAwesomeIcon icon={faDollarSign} /> {data.total_amount_sum}
               </p>
             </div>
           </div>
@@ -109,7 +115,7 @@ function Dashboard() {
                 Number of Orders
               </h3>
               <p className="text-3xl font-bold text-blue-600">
-                {data.num_orders}
+                <FontAwesomeIcon icon={faShoppingCart} /> {data.num_orders}
               </p>
             </div>
           </div>
@@ -162,7 +168,7 @@ function Dashboard() {
               data.sorted_products.map((product, index) => (
                 <div
                   key={index}
-                  className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 p-5 ring-1 ring-gray-200 hover:ring-blue-500 transition-all"
+                  className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 p-5 ring-1 ring-gray-200 hover:ring-blue-500"
                 >
                   <h4 className="text-lg font-bold text-gray-800 truncate">
                     {product[0]}
