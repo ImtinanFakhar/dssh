@@ -89,8 +89,7 @@ function Dashboard() {
               <h3 className="text-xl font-semibold mb-4 text-gray-700">
                 Total Sales
               </h3>
-              <p className="text-3xl font-bold text-blue-600">
-                <FontAwesomeIcon icon={faDollarSign} />{" "}
+             <p className="text-3xl font-bold text-blue-600">
                 {formatCurrency(data.total_after_commission)}
               </p>
             </div>
@@ -102,8 +101,8 @@ function Dashboard() {
               <h3 className="text-xl font-semibold mb-4 text-gray-700">
                 Total Sales After Commission
               </h3>
-              <p className="text-3xl font-bold text-blue-600">
-                <FontAwesomeIcon icon={faDollarSign} /> {data.total_amount_sum}
+             <p className="text-3xl font-bold text-blue-600">
+                {formatCurrency(data.total_amount_sum)}
               </p>
             </div>
           </div>
