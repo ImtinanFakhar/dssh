@@ -47,7 +47,7 @@ function Dashboard() {
     //const totalAfterCommission =
       //totalSales - (totalSales * percentageCommission - fixedCommission);
     //return formatCurrency(totalAfterCommission);
-  }
+  //}
   
 
   function formatCurrency(value) {
