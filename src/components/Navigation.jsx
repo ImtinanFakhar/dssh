@@ -15,7 +15,7 @@ function Navigation() {
             alt="HRoom Logo"
             className="w-8 h-8 mr-2"
           />
-          <div className="text-white text-2xl font-bold">Room</div>
+          <div className="text-white text-2xl font-bold">HRoom</div>
         </div>
         <ul className="flex space-x-4">
           <li className="text-white hover:text-blue-600">
