@@ -41,14 +41,14 @@ function Dashboard() {
   }, [startDate, endDate]);
 
   // Ensures the number is displayed in the fixed-point notation
-  function calculateAndFormatTotalAfterCommission(totalSales) {
-    const percentageCommission = 14.9 / 100;
-    const fixedCommission = 0.3;
-    const totalAfterCommission =
-      totalSales - (totalSales * percentageCommission - fixedCommission);
-    return formatCurrency(totalAfterCommission);
+  //function calculateAndFormatTotalAfterCommission(totalSales) {
+    //const percentageCommission = 14.9 / 100;
+    //const fixedCommission = 0.3;
+    //const totalAfterCommission =
+      //totalSales - (totalSales * percentageCommission - fixedCommission);
+    //return formatCurrency(totalAfterCommission);
   }
-  console.log(data.sales_by_discount);
+  
 
   function formatCurrency(value) {
     // Format the value as currency
