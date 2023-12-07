@@ -8,6 +8,7 @@ import {
   faShoppingCart,
 } from "@fortawesome/free-solid-svg-icons";
 
+
 function App() {
   // Set the initial startDate to the present day
   const initialStartDate = new Date();
@@ -21,7 +22,7 @@ function App() {
     setLoading(true);
 
     axios
-      .get("https://hyperoomco.pythonanywhere.com/orders/", {
+      .get("http://127.0.0.1:8000/orders/", {
         params: {
           start_date: startDate,
           end_date: endDate,
@@ -51,7 +52,13 @@ function App() {
     updatedShowProductDetails[index] = !updatedShowProductDetails[index];
     setShowProductDetails(updatedShowProductDetails);
   };
-
+  function formatCurrency(value) {
+    // Format the value as currency
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+    }).format(value);
+  }
   return (
     <div className="min-h-screen bg-gray-100 py-8">
       <div className="container mx-auto px-4">
@@ -85,12 +92,10 @@ function App() {
             </button>
           </div>
         </div>
-
+  
         {loading ? (
           <div className="text-center">
-            <p className="text-xl font-semibold text-gray-600">
-              Loading data...
-            </p>
+            <p className="text-xl font-semibold text-gray-600">Loading data...</p>
           </div>
         ) : data ? (
           <div>
@@ -102,36 +107,30 @@ function App() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="bg-blue-50 p-4 rounded-lg border border-blue-200 hover:shadow-md transition-shadow duration-200 ease-in-out">
                   <p className="text-3xl font-bold text-blue-500">
-                    ${data.total_amount_sum.toFixed(2)}
+                  {formatCurrency(data.total_amount_sum)}
                   </p>
-                  <p className="text-gray-600">
-                    Total Amount Sum After Commission
-                  </p>
+                  <p className="text-gray-600">Total Amount Sum After Commission</p>
                 </div>
                 <div className="bg-white rounded-xl shadow-lg overflow-hidden ring-1 ring-gray-200 hover:ring-blue-500 transition-all">
-                  <div className="px-5 py-6">
-                    <h3 className="text-xl font-semibold mb-4 text-gray-700">
-                      Number of Orders
-                    </h3>
-                    <p className="text-3xl font-bold text-blue-600">
-                      <FontAwesomeIcon icon={faShoppingCart} />{" "}
-                      {data.num_orders}
-                    </p>
-                  </div>
-                </div>
+            <div className="px-5 py-6">
+              <h3 className="text-xl font-semibold mb-4 text-gray-700">
+                Number of Orders
+              </h3>
+              <p className="text-3xl font-bold text-blue-600">
+                <FontAwesomeIcon icon={faShoppingCart} /> {data.num_orders}
+              </p>
+            </div>
+          </div>
               </div>
             </div>
-
+  
             {/* Ordered Products Section */}
             <div>
               <h2 className="text-2xl font-bold text-gray-800 mb-4">
                 Ordered Products
               </h2>
               {data.orders.map((order, index) => (
-                <div
-                  key={index}
-                  className="bg-white shadow-md rounded-lg p-4 mb-6"
-                >
+                <div key={index} className="bg-white shadow-md rounded-lg p-4 mb-6">
                   <div className="flex justify-between items-center border-b pb-4 mb-4">
                     <h3 className="text-xl font-semibold text-gray-800">
                       Order #{index + 1}
@@ -148,9 +147,7 @@ function App() {
                       className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300 transition duration-300 ease-in-out"
                       onClick={() => toggleProductDetails(index)}
                     >
-                      {showProductDetails[index]
-                        ? "Hide Details"
-                        : "View Details"}
+                      {showProductDetails[index] ? "Hide Details" : "View Details"}
                     </button>
                   </div>
                   {showProductDetails[index] && (
