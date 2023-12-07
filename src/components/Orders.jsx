@@ -81,7 +81,7 @@ function App() {
               className="bg-blue-500 text-white py-2 px-6 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50 shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1"
               onClick={fetchOrders}
             >
-              Fetch Data
+              Show Orders
             </button>
           </div>
         </div>
