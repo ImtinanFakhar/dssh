@@ -11,14 +11,14 @@ function EmailForm() {
   
     emailjs
       .send(
-        'service_w887nfy',
-        'template_nr2p8a4',
+        'service_jo71ii4',
+        'template_nfktfu9',
         {
           to_email: email, 
           message: message,
           from_name: 'Raja Store' // Replace with the name of the sender
         },
-        '2SfExqYFm1w17PWkQ'
+        'sNEItaQU2PnCRGvE-'
       )
       .then((response) => {
         console.log('Email sent:', response);
