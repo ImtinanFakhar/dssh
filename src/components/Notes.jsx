@@ -65,7 +65,7 @@ function EmailForm() {
       <form onSubmit={handleSendEmail}>
 
         <textarea
-          placeholder="Your Message"
+          placeholder="Please Add your email so we can reach back to you"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           className="w-full h-32 px-3 py-2 mt-4 border rounded-lg focus:outline-none focus:border-blue-400"
