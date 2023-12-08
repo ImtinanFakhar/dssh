@@ -92,7 +92,7 @@ function Products() {
       </div>
   
       {isLoading ? (
-        <div className="flex justify-center items-center cursor-pointer ...">
+        <div className="flex justify-center items-center ">
           <div className="animate-spin rounded-full h-32 w-32 border-t-4 border-t-red-500 border-b-4 border-b-blue-500"></div>
         </div>
       ) : (
@@ -115,7 +115,7 @@ function Products() {
               </div>
             ))}
           </div>
-          <div className="pagination-container flex justify-center mt-10">
+          <div className="pagination-container flex justify-center mt-10 cursor-pointer ...">
             <ReactPaginate
               previousLabel={'Previous'}
               nextLabel={'Next'}
