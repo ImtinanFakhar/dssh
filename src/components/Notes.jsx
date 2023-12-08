@@ -22,11 +22,11 @@ function EmailForm() {
       )
       .then((response) => {
         console.log('Email sent:', response);
-        setAlert('Email sent successfully!');
+        setAlert('Note sent successfully!');
       })
       .catch((error) => {
         console.error('Email error:', error);
-        setAlert('Email could not be sent. Please try again.');
+        setAlert('Note could not be sent. Please try again.');
       });
   };
 
