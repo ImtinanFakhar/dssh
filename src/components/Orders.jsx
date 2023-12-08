@@ -22,7 +22,7 @@ function App() {
     setLoading(true);
 
     axios
-      .get("http://127.0.0.1:8000/orders/", {
+      .get("https://hyperoomco.pythonanywhere.com/orders/", {
         params: {
           start_date: startDate,
           end_date: endDate,
