@@ -32,7 +32,7 @@ function Products() {
 
   useEffect(() => {
     setIsLoading(true);
-    axios.get('http://127.0.0.1:8000/all-products/')
+    axios.get('https://hyperoomco.pythonanywhere.com/all-products/')
       .then((response) => {
         const jsonData = JSON.parse(response.data);
         setProducts(jsonData);
