@@ -97,7 +97,7 @@ function Products() {
         </div>
       ) : (
         <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 cursor-pointer ...">
             {currentProducts.map((product) => (
               <div key={product.id} className="border bg-white p-4 rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 relative">
                 <div className="glass-effect absolute inset-0 rounded-lg bg-opacity-30"></div>
@@ -115,7 +115,7 @@ function Products() {
               </div>
             ))}
           </div>
-          <div className="pagination-container flex justify-center mt-10 cursor-pointer ...">
+          <div className="pagination-container flex justify-center mt-10 ">
             <ReactPaginate
               previousLabel={'Previous'}
               nextLabel={'Next'}
